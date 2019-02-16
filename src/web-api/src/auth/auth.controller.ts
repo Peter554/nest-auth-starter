@@ -1,13 +1,15 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { RegisterDto } from 'src/dtos/register-dto';
 
 @Controller('auth')
 export class AuthController {
     constructor(private authService: AuthService) { }
 
     @Post('register')
-    register() {
-        return 'Hi from register.';
+    register(@Body() registerDto: RegisterDto) {
+        // TODO Validation
+        return registerDto;
     }
 
     @Post('login')
@@ -17,7 +19,7 @@ export class AuthController {
 
     @Post('logout')
     logout() {
-        // TODO Do I need this on the API or just one the SPA?
+        // TODO Do I need this on the API or just on the SPA?
         return 'Hi from logout.';
     }
 }
