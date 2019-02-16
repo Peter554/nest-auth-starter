@@ -23,7 +23,7 @@ export class AuthService {
         const passwordSalt = await genSalt(10);
         const passwordHash = await hash(registerDto.password, passwordSalt);
         const userToCreate = new this.userModel({
-            username: registerDto.password,
+            username: registerDto.username,
             passwordHash,
         });
 
