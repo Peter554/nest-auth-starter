@@ -16,6 +16,7 @@ export class UsersService {
         const userToCreate = new this.userModel({
             username,
             passwordHash,
+            roles: ['user'],
         });
 
         await userToCreate.save();
