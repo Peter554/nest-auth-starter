@@ -2,11 +2,11 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { genSalt, hash, compare } from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 
-import { UserRegisterDto } from 'src/dtos/user-register.dto';
-import { UserLoginDto } from 'src/dtos/user-login.dto';
-import { JwtPayload } from './JwtPayload';
+import { UserRegisterDto } from 'src/auth/dtos/user-register.dto';
+import { UserLoginDto } from 'src/auth/dtos/user-login.dto';
+import { JwtPayload } from './jwt.payload';
 import { UsersService } from 'src/users/users.service';
-import { IUser } from 'src/schemas/user.schema';
+import { IUser } from 'src/users/schema/user.schema';
 
 @Injectable()
 export class AuthService {
