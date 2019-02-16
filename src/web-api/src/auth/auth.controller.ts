@@ -1,24 +1,25 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { RegisterDto } from 'src/dtos/register.dto';
+import { UserRegisterDto } from 'src/dtos/user-register.dto';
+import { UserLoginDto } from 'src/dtos/user-login.dto';
 
 @Controller('auth')
 export class AuthController {
     constructor(private authService: AuthService) { }
 
     @Post('register')
-    register(@Body() registerDto: RegisterDto) {
+    async register(@Body() registerDto: UserRegisterDto): Promise<void> {
         // TODO Validation
-        return registerDto;
+        await this.authService.registerUser(registerDto);
     }
 
     @Post('login')
-    login() {
-        return 'Hi from login.';
+    async login(@Body() loginDto: UserLoginDto) {
+        return await this.authService.login(loginDto);
     }
 
     @Post('logout')
-    logout() {
+    async logout() {
         // TODO Do I need this on the API or just on the SPA?
         return 'Hi from logout.';
     }

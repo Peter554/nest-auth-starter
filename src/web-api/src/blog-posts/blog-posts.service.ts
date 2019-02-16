@@ -14,7 +14,7 @@ export class BlogPostsService {
     }
 
     async create(blogPostCreateDto: BlogPostCreateDto): Promise<IBlogPost> {
-        const createdBlogPost = new this.blogPostModel(blogPostCreateDto);
-        return await createdBlogPost.save();
+        const blogPostToCreate = new this.blogPostModel(blogPostCreateDto);
+        return await blogPostToCreate.save();
     }
 }
