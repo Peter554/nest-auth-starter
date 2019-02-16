@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { BlogPostsService } from './blog-posts.service';
 import { BlogPostCreateDto } from 'src/dtos/blog-post-create.dto';
 import { IBlogPost } from 'src/schemas/blog-post.schema';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('blog-posts')
+@UseGuards(AuthGuard('jwt'))
 export class BlogPostsController {
     constructor(private blogPostsService: BlogPostsService) { }
 
