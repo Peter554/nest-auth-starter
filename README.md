@@ -4,7 +4,7 @@ A nest js auth starter
 
 ## Todo
 
-- Web api username/password auth
-- Dto Validation, password complexity, username unique
-- Web spa angular basic
-- Roles: user and admin 
+- [x] Web api username/password auth
+- [x] Dto Validation, password complexity, username unique
+- [x] Roles: user and admin 
+- [ ] Web spa angular basic
