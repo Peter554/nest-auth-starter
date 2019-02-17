@@ -26,6 +26,8 @@
     "@nestjs/mongoose": "^5.2.2",
     "@nestjs/passport": "^5.1.0",
     "bcryptjs": "^2.4.3",
+    "class-transformer": "^0.2.0",
+    "class-validator": "^0.9.1",
     "dotenv": "^6.2.0",
     "mongoose": "^5.4.13",
     "passport": "^0.4.0",

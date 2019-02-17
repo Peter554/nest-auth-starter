@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseGuards, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, Req, UsePipes, ValidationPipe } from '@nestjs/common';
 import { BlogPostsService } from './blog-posts.service';
 import { BlogPostCreateDto } from 'src/blog-posts/dtos/blog-post-create.dto';
 import { IBlogPost } from 'src/blog-posts/schema/blog-post.schema';
