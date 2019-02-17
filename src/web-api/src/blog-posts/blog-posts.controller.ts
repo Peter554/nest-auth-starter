@@ -11,14 +11,20 @@ export class BlogPostsController {
     constructor(private blogPostsService: BlogPostsService) { }
 
     @Get()
-    async getAllPosts(@Req() req): Promise<IBlogPost[]> {
-        // console.log(req.user);
+    async getAllPosts(): Promise<IBlogPost[]> {
         return await this.blogPostsService.getAll();
+    }
+
+    @Get('mine')
+    async getMyPosts(@Req() req): Promise<IBlogPost[]> {
+        return await this.blogPostsService.getByAuthor(req.user);
     }
 
     @Post()
     @UseGuards(AdminGuard)
-    async postABlogPost(@Body() blogPostCreateDto: BlogPostCreateDto): Promise<void> {
-        await this.blogPostsService.create(blogPostCreateDto);
+    async postABlogPost(
+        @Body() blogPostCreateDto: BlogPostCreateDto,
+        @Req() req): Promise<void> {
+        await this.blogPostsService.create(blogPostCreateDto, req.user);
     }
 }
