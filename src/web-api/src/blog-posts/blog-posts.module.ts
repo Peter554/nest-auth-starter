@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { BlogPostsController } from './blog-posts.controller';
 import { BlogPostsService } from './blog-posts.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { BlogPostSchema } from 'src/blog-posts/schema/blog-post.schema';
+import { BlogPostSchema } from 'src/blog-posts/blog-post.schema';
 import { PassportModule } from '@nestjs/passport';
 
 @Module({

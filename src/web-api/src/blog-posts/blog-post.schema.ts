@@ -1,13 +1,14 @@
 import { Document, Schema } from 'mongoose';
+import { User } from 'src/users/user.schema';
 
-export interface IBlogPost extends Document {
+export interface BlogPost extends Document {
   subject: string;
   body: string;
-  authorId: string;
+  author: User;
 }
 
 export const BlogPostSchema = new Schema({
   subject: String,
   body: String,
-  authorId: String,
+  author: { type: Schema.Types.ObjectId, ref: 'User'},
 });

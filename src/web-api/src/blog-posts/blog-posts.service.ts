@@ -1,25 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-
 import { BlogPostCreateDto } from 'src/blog-posts/dtos/blog-post-create.dto';
-import { IBlogPost } from 'src/blog-posts/schema/blog-post.schema';
-import { IUser } from 'src/users/schema/user.schema';
+import { BlogPost } from 'src/blog-posts/blog-post.schema';
+import { User } from 'src/users/user.schema';
 
 @Injectable()
 export class BlogPostsService {
-    constructor(@InjectModel('BlogPost') private blogPostModel: Model<IBlogPost>) {}
+    constructor(@InjectModel('BlogPost') private blogPostModel: Model<BlogPost>) {}
 
-    async getAll(): Promise<IBlogPost[]> {
-        return await this.blogPostModel.find().exec();
+    async getAll(): Promise<BlogPost[]> {
+        return await this.blogPostModel
+            .find()
+            .populate('author', 'username')
+            .exec();
     }
 
-    async getByAuthor(author: IUser): Promise<IBlogPost[]> {
-        return await this.blogPostModel.find({ authorId: author._id }).exec();
-    }
-
-    async create(blogPostCreateDto: BlogPostCreateDto, author: IUser): Promise<IBlogPost> {
-        const blogPostToCreate = new this.blogPostModel({ ...blogPostCreateDto, authorId: author._id });
+    async create(blogPostCreateDto: BlogPostCreateDto, author: User): Promise<BlogPost> {
+        const blogPostToCreate = new this.blogPostModel({ ...blogPostCreateDto, author });
         return await blogPostToCreate.save();
     }
 }

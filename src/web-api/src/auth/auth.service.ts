@@ -6,7 +6,7 @@ import { UserRegisterDto } from 'src/auth/dtos/user-register.dto';
 import { UserLoginDto } from 'src/auth/dtos/user-login.dto';
 import { JwtPayload } from './jwt.payload';
 import { UsersService } from 'src/users/users.service';
-import { IUser } from 'src/users/schema/user.schema';
+import { User } from 'src/users/user.schema';
 
 @Injectable()
 export class AuthService {
@@ -49,7 +49,7 @@ export class AuthService {
         return this.jwtService.sign(payload);
     }
 
-    async getUserFromJwt(jwtPayload: JwtPayload): Promise<IUser> {
+    async getUserFromJwt(jwtPayload: JwtPayload): Promise<User> {
         return await this.usersService.findOneByUsername(jwtPayload.username);
     }
 }
