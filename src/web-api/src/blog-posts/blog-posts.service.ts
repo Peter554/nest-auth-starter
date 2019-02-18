@@ -14,6 +14,7 @@ export class BlogPostsService {
         return await this.blogPostModel
             .find()
             .populate('author', 'username')
+            .populate('comments.author', 'username')
             .exec();
     }
 
